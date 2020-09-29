@@ -1,6 +1,7 @@
-#include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
+
+#define BUF_SIZE 1024
 
 // Declarations
 bool isVowel(char x);
