@@ -5,7 +5,7 @@
 
 // Declarations
 bool isVowel(char x);
-
+int copy_non_vowels(int num_chars, char* in_buf, char* out_buf);
 
 
 
@@ -24,5 +24,9 @@ bool is Vowel(char x) {
 		return 1;
 	}
 		return 0;
+}
+
+int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
+
 }
 
