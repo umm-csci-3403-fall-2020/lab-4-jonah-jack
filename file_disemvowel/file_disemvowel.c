@@ -48,8 +48,8 @@ void disemvowel(FILE* inputFile, FILE* outputFILE) {
 }
 
 int main(int argc, char*argv[]) {
-	FILE *inputFile;
-	FILE *outputFile;
+	FILE *inputFile = stdin;
+	FILE *outputFile = stdout;
 
 	disemvowel(inputFile, outputFile);
 
