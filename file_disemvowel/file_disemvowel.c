@@ -54,6 +54,9 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
 		int consonants = copy_non_vowels(charCount, in_buf, out_buf);
 		fwrite(out_buf, sizeof(char), consonants, outputFile);
 	}
+	
+	free (in_buf);
+	free(out_buf);
 }
 
 int main(int argc, char*argv[]) {
