@@ -55,15 +55,32 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
 		fwrite(out_buf, sizeof(char), consonants, outputFile);
 	}
 	
-	free (in_buf);
-	free(out_buf);
+//	free (in_buf);
+//	free(out_buf);
 }
 
 int main(int argc, char*argv[]) {
+	
 	FILE *inputFile = stdin;
 	FILE *outputFile = stdout;
 
+	if (argc == 1) {
+		inputFile = stdin;
+		outputFile = stdout;
+	}
+
+	if (argc == 2 || argc == 3) {
+		FILE *inputFile = fopen(argv[1], 'r');
+	}
+
+	if (argc == 3) {
+		FILE *outputFile = fopen(argv[2], 'w');
+	}
+
 	disemvowel(inputFile, outputFile);
+
+	fclose(inputFile);
+	fclose(outputFile);
 
 	return 0;
 }
