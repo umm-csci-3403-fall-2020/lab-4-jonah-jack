@@ -23,7 +23,7 @@ bool is_dir(const char* path) {
   if (statReturn == 0) {
     return S_ISDIR(buf.st_mode);
   }
-  return 0;
+  return false;
 }
 
 /* 
@@ -50,8 +50,9 @@ void process_directory(const char* path) {
   dirp = opendir(path);
 
   while ((entry = readdir(dirp)) != NULL) {
-    if (entry->d_name != "." || entry->d_name != "..") {
+    if (strcmp(entry->d_name, ".") != 0 || strcmp(entry->d_name, "..") != 0) {
       ++num_dirs;
+      process_path(entry->d_name);
     }
   }
   
