@@ -50,13 +50,13 @@ void process_directory(const char* path) {
    * with a matching call to chdir() to move back out of it when you're
    * done.
    */
-  chdir(path);
   DIR * dirp;
   struct dirent *entry;
   dirp = opendir(path);
-
+  chdir(path);
+  
   while ((entry = readdir(dirp)) != NULL) {
-    if (strcmp(entry->d_name, ".") != 0 || strcmp(entry->d_name, "..") != 0) {
+    if (strcmp(entry->d_name, ".") != 0 && strcmp(entry->d_name, "..") != 0) {
       ++num_dirs;
       process_path(entry->d_name);
     }
@@ -65,6 +65,7 @@ void process_directory(const char* path) {
   closedir(dirp);
   chdir("..");
 }
+
 
 void process_file(const char* path) {
   /*
@@ -82,7 +83,6 @@ void process_path(const char* path) {
 }
 
 int main (int argc, char *argv[]) {
-  printf("f");
   // Ensure an argument was provided.
   if (argc != 2) {
     printf ("Usage: %s <path>\n", argv[0]);
