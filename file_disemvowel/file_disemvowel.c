@@ -9,6 +9,7 @@
 bool isVowel(char x);
 int copy_non_vowels(int num_chars, char* in_buf, char* out_buf);
 void disemvowel(FILE* inputFile, FILE* outputFile);
+
 bool isVowel(char x) {
 	if (x == 'a' ||
 	    x == 'e' ||
@@ -43,24 +44,17 @@ int copy_non_vowels(int num_chars, char* in_buf, char* out_buf) {
 
 void disemvowel(FILE* inputFile, FILE* outputFile) {
 
-//	int charCount;
-//	charCount = fread(in_buf, sizeof(char), BUF_SIZE, inputFile);
-
-	char *in_buf = (char*) calloc (BUF_SIZE, sizeof(char));
-	char *out_buf = (char*) calloc (BUF_SIZE, sizeof(char));
-
 	int buffer = BUF_SIZE;
 	int j = 0;
 
+	char *in_buf = (char*) calloc(BUF_SIZE, sizeof(char));
+	char *out_buf = (char*) calloc(BUF_SIZE, sizeof(char));
+	
 	while (buffer == BUF_SIZE) {
 		buffer = fread(in_buf, sizeof(char), BUF_SIZE, inputFile);
 		j = copy_non_vowels(buffer, in_buf, out_buf);
-		fwrite (out_buf, sizeof(char), j, outputFile);
+		fwrite(out_buf, sizeof(char), j, outputFile);
 	}
-//	if (charCount != 0) {
-//		int consonants = copy_non_vowels(charCount, in_buf, out_buf);
-//		fwrite(out_buf, sizeof(char), consonants, outputFile);
-//	}
 
 //	free (in_buf);
 //	free(out_buf);
@@ -76,12 +70,14 @@ int main(int argc, char*argv[]) {
 		outputFile = stdout;
 	}
 
-	if (argc == 2 || argc == 3) {
-		FILE *inputFile = fopen(argv[1], 'r');
+	if (argc == 2) {
+		inputFile = fopen(argv[1], "r");
+		
 	}
 
 	if (argc == 3) {
-		FILE *outputFile = fopen(argv[2], 'w');
+		inputFile = fopen(argv[1], "r");
+		outputFile = fopen(argv[2], "w");
 	}
 
 	disemvowel(inputFile, outputFile);
