@@ -56,8 +56,8 @@ void disemvowel(FILE* inputFile, FILE* outputFile) {
 		fwrite(out_buf, sizeof(char), j, outputFile);
 	}
 
-//	free (in_buf);
-//	free(out_buf);
+	free (in_buf);
+	free(out_buf);
 }
 
 int main(int argc, char*argv[]) {
