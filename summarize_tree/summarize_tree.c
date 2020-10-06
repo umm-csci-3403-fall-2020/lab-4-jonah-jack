@@ -17,13 +17,19 @@ bool is_dir(const char* path) {
    * the file doesn't actually exist.
    */
   struct stat buf;
-  int statReturn = stat(path, &buf);
-
+  
   //Checking for errors in stat
-  if (statReturn == 0) {
-    return S_ISDIR(buf.st_mode);
+  if (stat(path, &buf) == 0) {
+    if (S_ISDIR(buf.st_mode) > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    //error case
+    printf("Error in stat call: %s", path);
+    return 0;
   }
-  return false;
 }
 
 /* 
@@ -76,6 +82,7 @@ void process_path(const char* path) {
 }
 
 int main (int argc, char *argv[]) {
+  printf("f");
   // Ensure an argument was provided.
   if (argc != 2) {
     printf ("Usage: %s <path>\n", argv[0]);
