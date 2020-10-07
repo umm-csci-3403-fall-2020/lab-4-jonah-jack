@@ -22,6 +22,7 @@ int main (int argc, char** argv) {
 	ftw(argv[1], callback, MAX_FTW_DEPTH);
 
 	// Print out the results
-	
+	printf("There were %i directories", readableDirCount);
+	printf("There were %i files", fileCount);	
 	return 0;
 }
