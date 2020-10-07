@@ -1,11 +1,11 @@
-#usr/bin/env bash
+#/usr/bin/env bash
 
-PWD = $1
+TARG_DIR="$1"
 
-dirCount = $(find $1 -type d | wc -l)
+DIR_COUNT="$(find $1 -type d | wc -l)"
 
-regFileCount = $(find $1 -type f| wc -l)
+REG_FILE_COUNT="$(find $1 -type f| wc -l)"
 
-echo "Processed all the files from $PWD."
-echo "There were $dirCount directories."
-echo "There were $regFileCount files."
+echo "Processed all the files from $TARG_DIR."
+echo "There were $DIR_COUNT directories."
+echo "There were $REG_FILE_COUNT files."
