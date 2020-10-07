@@ -1,10 +1,12 @@
 #include <ftw.h>
+#include <stdio.h>
 
 // Declarations
 #define MAX_FTW_DEPTH 16
-static int readableDirCount = 0;
-static int fileCount = 0;
+static int readableDirCount;
+static int fileCount;
 
+// Method declaration for callback
 static int callback(const char *fpath, const struct stat *sb, int typeflag); 
 
 static int callback(const char *fpath, const struct stat *sb, int typeflag) {
@@ -17,12 +19,14 @@ static int callback(const char *fpath, const struct stat *sb, int typeflag) {
 }
 
 int main (int argc, char** argv) {
-	// Check arguments and set things up
 
 	ftw(argv[1], callback, MAX_FTW_DEPTH);
 
 	// Print out the results
-	printf("There were %i directories", readableDirCount);
-	printf("There were %i files", fileCount);	
+	printf("There were %i directories.", readableDirCount);
+	printf("\n");
+	printf("There were %i regular files.", fileCount);
+	printf("\n");
+	
 	return 0;
 }
